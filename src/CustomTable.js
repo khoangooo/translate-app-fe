@@ -1,18 +1,17 @@
 import React, { useState, useRef } from "react";
 import CustomModal from "./CustomModal";
 import api from "./api";
-import PropTypes from "prop-types";
-import { makeStyles, useTheme, withStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableHead from "@material-ui/core/TableHead";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
-import TableFooter from "@material-ui/core/TableFooter";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 import Pagination from "@material-ui/lab/Pagination";
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -122,7 +121,7 @@ export default function CustomPaginationActionsTable() {
                 <StyledTableCell style={{ width: 160 }} aligh="center">
                   {item.id}
                 </StyledTableCell>
-                <StyledTableCell>{item.sfld}</StyledTableCell>
+                <StyledTableCell>{ReactHtmlParser(item.flds)}</StyledTableCell>
                 <StyledTableCell>{item.translate}</StyledTableCell>
                 <StyledTableCell
                   style={{ width: 160, cursor: "pointer" }}
